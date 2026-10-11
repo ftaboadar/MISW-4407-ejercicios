@@ -21,9 +21,14 @@ def system_screen_bounce(world:esper.World,screen_rect:pygame.Rect):
 
         if cuad_react.left <= 0 or cuad_react.right >= screen_rect.width:
             c_v.vel.x *= -1
-            cuad_react.clamp_ip(screen_rect)
-            c_t.pos.x = cuad_react.x
+            if cuad_react.left <= 0:
+                c_t.pos.x = 0
+            else:
+                c_t.pos.x = screen_rect.width - cuad_react.width
+
         if cuad_react.top <= 0 or cuad_react.bottom >= screen_rect.height:
             c_v.vel.y *= -1
-            cuad_react.clamp_ip(screen_rect)
-            c_t.pos.y = cuad_react.y
+            if cuad_react.top <= 0:
+                c_t.pos.y = 0
+            else:
+                c_t.pos.y = screen_rect.height - cuad_react.height
